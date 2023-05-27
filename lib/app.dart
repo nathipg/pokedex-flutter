@@ -13,8 +13,9 @@ final goRouter = GoRouter(
         builder: (context, state) => const HomeScreen(),
         routes: [
           GoRoute(
-            path: 'details',
-            builder: (context, state) => const DetailsScreen(),
+            path: 'details/:pokemonId',
+            builder: (context, state) =>
+                DetailsScreen(pokemonId: state.params['pokemonId']),
           ),
         ]),
   ],
