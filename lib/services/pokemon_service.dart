@@ -68,8 +68,10 @@ class PokemonService {
     return null;
   }
 
-  Future<List<PokemonModel?>> getPokemonList() async {
+  Future<List<PokemonModel>> getPokemonList() async {
     var numbers = List<int>.generate(150, (i) => i + 1);
-    return await Future.wait(numbers.map((number) => _getPokemon(number)));
+    var pokemonList =
+        await Future.wait(numbers.map((number) => _getPokemon(number)));
+    return pokemonList.whereType<PokemonModel>().toList();
   }
 }
