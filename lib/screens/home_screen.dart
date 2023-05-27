@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../models/app_model.dart';
 import '../services/pokemon_service.dart';
+import '../widgets/pokemon_card_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,28 +31,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppModel>(
-        builder: (context, viewModel, _) => Scaffold(
-              appBar: AppBar(
-                title: const Text('Pokedex'),
-              ),
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      _showLoading
-                          ? 'Loading...'
-                          : 'Pokemon list ${viewModel.pokemonList.length}',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                  ],
+      builder: (context, viewModel, _) => Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Pokedex',
+            style: TextStyle(color: Colors.black),
+          ),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+        body: _showLoading
+            ? Text('Loading...')
+            : SingleChildScrollView(
+                child: Center(
+                  child: PokemonCardList(pokemonList: viewModel.pokemonList),
                 ),
               ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () => context.go('/details'),
-                tooltip: 'Go to details',
-                child: const Text('Details'),
-              ),
-            ));
+      ),
+    );
   }
 }
