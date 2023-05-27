@@ -2,8 +2,6 @@ import 'dart:convert';
 
 // Created using https://app.quicktype.io/
 
-import 'dart:convert';
-
 PokemonModel pokemonFromJson(String str) =>
     PokemonModel.fromJson(json.decode(str));
 

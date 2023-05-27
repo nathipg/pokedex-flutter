@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
+import 'models/app_model.dart';
 import 'screens/details_screen.dart';
 import 'screens/home_screen.dart';
 
@@ -23,8 +25,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: goRouter,
+    return ChangeNotifierProvider(
+      create: (context) => AppModel(),
+      child: MaterialApp.router(
+        routerConfig: goRouter,
+      ),
     );
   }
 }

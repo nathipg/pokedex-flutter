@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
-import 'package:pokedex/models/pokemon_model.dart';
+import '../models/pokemon_model.dart';
 
 class ApiConstants {
   static String baseUrl = 'https://pokeapi.co/api/v2';
