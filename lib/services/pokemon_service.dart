@@ -45,10 +45,9 @@ class PokemonService {
     return null;
   }
 
-  Future<PokemonModel?> _getPokemon(int id) async {
+  Future<PokemonModel?> _getPokemon(String pokemonUrl) async {
     try {
-      var url = Uri.parse(
-          '${ApiConstants.baseUrl}${ApiConstants.pokemonEndpoint}/$id');
+      var url = Uri.parse(pokemonUrl);
       var response = await http.get(url);
       if (response.statusCode == 200) {
         PokemonModel pokemon = pokemonFromJson(response.body);
@@ -69,9 +68,26 @@ class PokemonService {
   }
 
   Future<List<PokemonModel>> getPokemonList() async {
-    var numbers = List<int>.generate(150, (i) => i + 1);
-    var pokemonList =
-        await Future.wait(numbers.map((number) => _getPokemon(number)));
-    return pokemonList.whereType<PokemonModel>().toList();
+    try {
+      var url = Uri.parse(
+          '${ApiConstants.baseUrl}${ApiConstants.pokemonEndpoint}?limit=151');
+      var response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        SearchPokemonList originalPokemonList =
+            originalPokemonListFromJson(response.body);
+        log(originalPokemonList.results[0].name);
+
+        List<PokemonModel?> pokemonList = await Future.wait(originalPokemonList
+            .results
+            .map((pokemon) => _getPokemon(pokemon.url)));
+
+        return pokemonList.whereType<PokemonModel>().toList();
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+
+    return [];
   }
 }

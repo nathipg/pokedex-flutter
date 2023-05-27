@@ -1176,3 +1176,60 @@ class EvolutionDetailModel {
         "turn_upside_down": turnUpsideDown,
       };
 }
+
+SearchPokemonList originalPokemonListFromJson(String str) =>
+    SearchPokemonList.fromJson(json.decode(str));
+
+String originalPokemonListToJson(SearchPokemonList data) =>
+    json.encode(data.toJson());
+
+class SearchPokemonList {
+  int count;
+  String next;
+  dynamic previous;
+  List<SearchItemPokemon> results;
+
+  SearchPokemonList({
+    required this.count,
+    required this.next,
+    this.previous,
+    required this.results,
+  });
+
+  factory SearchPokemonList.fromJson(Map<String, dynamic> json) =>
+      SearchPokemonList(
+        count: json["count"],
+        next: json["next"],
+        previous: json["previous"],
+        results: List<SearchItemPokemon>.from(
+            json["results"].map((x) => SearchItemPokemon.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "count": count,
+        "next": next,
+        "previous": previous,
+        "results": List<dynamic>.from(results.map((x) => x.toJson())),
+      };
+}
+
+class SearchItemPokemon {
+  String name;
+  String url;
+
+  SearchItemPokemon({
+    required this.name,
+    required this.url,
+  });
+
+  factory SearchItemPokemon.fromJson(Map<String, dynamic> json) =>
+      SearchItemPokemon(
+        name: json["name"],
+        url: json["url"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "url": url,
+      };
+}
