@@ -32,14 +32,19 @@ class PokemonService {
       return null;
     }
 
-    var url = Uri.parse(urlEvolutionChain);
-    var response = await http.get(url);
+    try {
+      var url = Uri.parse(urlEvolutionChain);
+      var response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      EvolutionChainModel evolutionChain =
-          evolutionChainFromJson(response.body);
+      if (response.statusCode == 200) {
+        EvolutionChainModel evolutionChain =
+            evolutionChainFromJson(response.body);
 
-      return evolutionChain;
+        return evolutionChain;
+      }
+    } catch (e) {
+      log(e.toString());
+      return null;
     }
 
     return null;
@@ -76,7 +81,6 @@ class PokemonService {
       if (response.statusCode == 200) {
         SearchPokemonList originalPokemonList =
             originalPokemonListFromJson(response.body);
-        log(originalPokemonList.results[0].name);
 
         List<PokemonModel?> pokemonList = await Future.wait(originalPokemonList
             .results
