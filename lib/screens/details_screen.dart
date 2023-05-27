@@ -3,14 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../models/app_model.dart';
 
-class DetailsScreen extends StatefulWidget {
-  const DetailsScreen({super.key});
+class DetailsScreen extends StatelessWidget {
+  final String? pokemonId;
 
-  @override
-  State<DetailsScreen> createState() => _DetailsScreenState();
-}
+  const DetailsScreen({super.key, required this.pokemonId});
 
-class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppModel>(
@@ -21,7 +18,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Pokemon details ${viewModel.pokemonList.length}',
+                'Pokemon details $pokemonId',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
