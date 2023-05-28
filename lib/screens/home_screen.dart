@@ -53,7 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const PageTitle(text: 'Pokedex', color: Colors.black),
+                  const PageTitle(
+                    text: 'Pokedex',
+                    color: Colors.black,
+                    withToolbar: false,
+                    marginBottom: 32,
+                  ),
                   _showLoading
                       ? const Loading()
                       : PokemonCardList(pokemonList: viewModel.pokemonList),
