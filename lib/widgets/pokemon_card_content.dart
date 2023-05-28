@@ -28,12 +28,14 @@ class PokemonCardContent extends StatelessWidget {
               fit: BoxFit.none,
             ),
           ),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            PokemonCardName(name: pokemon.name),
-            for (var type in pokemon.types)
-              PokemonTypeCard(type: type.type.name)
-          ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PokemonCardName(name: pokemon.name),
+              for (var type in pokemon.types)
+                PokemonTypeCard(type: type.type.name)
+            ],
+          ),
         ),
       ],
     );
