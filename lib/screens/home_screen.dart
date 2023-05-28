@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:pokedex/widgets/pokemon_logo.dart';
 import 'package:provider/provider.dart';
 
 import '../models/app_model.dart';
@@ -33,20 +35,45 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer<AppModel>(
       builder: (context, viewModel, _) => Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Pokedex',
-            style: TextStyle(color: Colors.black),
-          ),
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
+          toolbarHeight: 0,
         ),
-        body: _showLoading
-            ? Text('Loading...')
-            : SingleChildScrollView(
-                child: Center(
-                  child: PokemonCardList(pokemonList: viewModel.pokemonList),
-                ),
+        body: Stack(
+          children: [
+            PokemonLogo(
+              color: Colors.grey,
+              x: MediaQuery.of(context).size.width * 0.53,
+              y: -50,
+              width: MediaQuery.of(context).size.width / 1.5,
+              height: MediaQuery.of(context).size.width / 1.5,
+            ),
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(16, 64, 16, 32),
+                    child: const Text(
+                      'Pokedex',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32,
+                      ),
+                    ),
+                  ),
+                  _showLoading
+                      ? Container(
+                          margin: const EdgeInsets.only(left: 16),
+                          child: const Text('Loading...'),
+                        )
+                      : PokemonCardList(pokemonList: viewModel.pokemonList),
+                ],
               ),
+            ),
+          ],
+        ),
       ),
     );
   }
