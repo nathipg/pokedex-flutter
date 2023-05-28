@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../helpers/type_color.dart';
 import '../models/pokemon_model.dart';
+import 'pokemon_logo.dart';
 import 'pokemon_type_card.dart';
 
 class PokemonCard extends StatelessWidget {
@@ -29,32 +30,50 @@ class PokemonCard extends StatelessWidget {
         child: SizedBox(
           height: 125,
           width: 185,
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                alignment: AlignmentDirectional.bottomEnd,
-                image: NetworkImage(
-                  pokemon.sprites.frontDefault,
-                ),
-                fit: BoxFit.none,
+          child: Stack(
+            children: [
+              const PokemonLogo(
+                color: Colors.white,
+                x: 85,
+                y: 30,
+                width: 100,
+                height: 100,
               ),
-            ),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Container(
-                  margin: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    toBeginningOfSentenceCase(pokemon.name) ?? '',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+              Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        alignment: Alignment.bottomRight,
+                        image: NetworkImage(
+                          pokemon.sprites.frontDefault,
+                        ),
+                        fit: BoxFit.none,
+                      ),
                     ),
-                  )),
-              for (var type in pokemon.types)
-                PokemonTypeCard(type: type.type.name)
-            ]),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 8),
+                            child: Text(
+                              toBeginningOfSentenceCase(pokemon.name) ?? '',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          for (var type in pokemon.types)
+                            PokemonTypeCard(type: type.type.name)
+                        ]),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
