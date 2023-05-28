@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/type_color.dart';
 import '../models/app_model.dart';
 import '../models/pokemon_model.dart';
-import '../widgets/page_title.dart';
+import '../widgets/details_content.dart';
+import '../widgets/details_header.dart';
+import '../widgets/pokemon_art.dart';
 import '../widgets/pokemon_logo.dart';
-import '../widgets/pokemon_type_card.dart';
 
 class DetailsScreen extends StatelessWidget {
   final String? pokemonId;
@@ -59,74 +59,22 @@ class DetailsScreenContent extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      PageTitle(
-                        text: toBeginningOfSentenceCase(pokemon.name) ?? '',
-                        color: Colors.white,
-                        withToolbar: true,
-                        marginBottom: 8,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 16),
-                        child: Row(
-                          children: [
-                            for (var type in pokemon.types)
-                              PokemonTypeCard(type: type.type.name)
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 16),
-                    child: Text(
-                      '#${pokemon.id.toString().padLeft(3, 0.toString())}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
+              DetailsHeader(
+                pokemon: pokemon,
               ),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                color: Colors.white,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 2,
-                  child: const Padding(
-                    padding: EdgeInsets.fromLTRB(16, 32, 16, 32),
-                    child: Text('DETAILS'),
-                  ),
-                ),
+              DetailsContent(
+                pokemon: pokemon,
+                pokemonList: pokemonList,
               ),
             ],
           ),
-          Container(
-            transform: Matrix4.translationValues(
-              MediaQuery.of(context).size.width / 4,
-              MediaQuery.of(context).size.height / 4 -
-                  MediaQuery.of(context).size.width / 8,
-              0,
-            ),
-            child: Image(
-              height: MediaQuery.of(context).size.width / 2,
-              width: MediaQuery.of(context).size.width / 2,
-              image: NetworkImage(
-                pokemonImg,
-              ),
-            ),
+          PokemonArt(
+            imgUrl: pokemonImg,
+            x: MediaQuery.of(context).size.width / 4,
+            y: MediaQuery.of(context).size.height / 4 -
+                MediaQuery.of(context).size.width / 8,
+            height: MediaQuery.of(context).size.width / 2,
+            width: MediaQuery.of(context).size.width / 2,
           ),
         ],
       ),

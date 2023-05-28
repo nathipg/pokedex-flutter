@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'positioner.dart';
+
 class PokemonLogo extends StatelessWidget {
   final Color color;
   final double x;
@@ -19,8 +21,9 @@ class PokemonLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      transform: Matrix4.translationValues(x, y, 0.0),
+    return Positioner(
+      x: x,
+      y: y,
       child: Opacity(
         opacity: 0.1,
         child: SvgPicture.asset(
