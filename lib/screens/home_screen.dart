@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/widgets/pokemon_logo.dart';
 import 'package:provider/provider.dart';
 
 import '../models/app_model.dart';
 import '../services/pokemon_service.dart';
+import '../widgets/loading.dart';
+import '../widgets/page_title.dart';
 import '../widgets/pokemon_card_list.dart';
+import '../widgets/pokemon_logo.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -51,22 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(16, 64, 16, 32),
-                    child: const Text(
-                      'Pokedex',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
-                      ),
-                    ),
-                  ),
+                  const PageTitle(text: 'Pokedex', color: Colors.black),
                   _showLoading
-                      ? Container(
-                          margin: const EdgeInsets.only(left: 16),
-                          child: const Text('Loading...'),
-                        )
+                      ? const Loading()
                       : PokemonCardList(pokemonList: viewModel.pokemonList),
                 ],
               ),

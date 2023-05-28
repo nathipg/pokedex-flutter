@@ -18,7 +18,6 @@ class PokemonCardList extends StatelessWidget {
         for (var pokemon in pokemonList)
           PokemonCard(
             pokemon: pokemon,
-            context: context,
           )
       ],
     );

@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 
 import '../helpers/type_color.dart';
 import '../models/pokemon_model.dart';
+import 'pokemon_card_content.dart';
 import 'pokemon_logo.dart';
-import 'pokemon_type_card.dart';
 
 class PokemonCard extends StatelessWidget {
   final PokemonModel pokemon;
-  final BuildContext context;
 
   const PokemonCard({
     super.key,
     required this.pokemon,
-    required this.context,
   });
 
   @override
@@ -39,40 +36,7 @@ class PokemonCard extends StatelessWidget {
                 width: 100,
                 height: 100,
               ),
-              Stack(
-                fit: StackFit.expand,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        alignment: Alignment.bottomRight,
-                        image: NetworkImage(
-                          pokemon.sprites.frontDefault,
-                        ),
-                        fit: BoxFit.none,
-                      ),
-                    ),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(bottom: 8),
-                            child: Text(
-                              toBeginningOfSentenceCase(pokemon.name) ?? '',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          for (var type in pokemon.types)
-                            PokemonTypeCard(type: type.type.name)
-                        ]),
-                  ),
-                ],
-              ),
+              PokemonCardContent(pokemon: pokemon),
             ],
           ),
         ),
