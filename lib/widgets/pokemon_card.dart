@@ -5,6 +5,7 @@ import '../helpers/type_color.dart';
 import '../models/pokemon_model.dart';
 import 'pokemon_card_content.dart';
 import 'pokemon_logo.dart';
+import 'rounded_card.dart';
 
 class PokemonCard extends StatelessWidget {
   final PokemonModel pokemon;
@@ -18,11 +19,7 @@ class PokemonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => context.go('/details/${pokemon.id}'),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        elevation: 0,
+      child: RoundedCard(
         color: TypeColor.getTypeColor(pokemon.types[0].type.name),
         child: SizedBox(
           height: 125,
