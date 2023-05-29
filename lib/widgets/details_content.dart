@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/pokemon_model.dart';
+import 'rounded_card.dart';
 
 class DetailsContent extends StatelessWidget {
   final PokemonModel pokemon;
@@ -14,19 +15,42 @@ class DetailsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+    List<Tab> tabs = tabsName
+        .map(
+          (String tabName) => Tab(
+            text: tabName,
+          ),
+        )
+        .toList();
+
+    return RoundedCard(
       color: Colors.white,
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height / 2,
-        child: const Padding(
-          padding: EdgeInsets.fromLTRB(16, 32, 16, 32),
-          child: Text('DETAILS'),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
+          child: DefaultTabController(
+            length: tabsName.length,
+            child: Column(
+              children: [
+                TabBar(
+                  labelColor: Colors.black,
+                  isScrollable: true,
+                  tabs: tabs,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
+
+List<String> tabsName = [
+  'About',
+  'Base Stats',
+  'Evolution',
+  'Moves',
+];
