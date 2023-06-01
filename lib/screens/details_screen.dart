@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 import '../helpers/type_color.dart';
 import '../models/app_model.dart';
 import '../models/pokemon_model.dart';
-import '../widgets/details_content.dart';
-import '../widgets/details_header.dart';
-import '../widgets/pokemon_art.dart';
-import '../widgets/pokemon_logo.dart';
+import '../widgets/details/details_content.dart';
+import '../widgets/details/details_header.dart';
+import '../widgets/pokemon/pokemon_art.dart';
+import '../widgets/pokemon/pokemon_logo.dart';
 
 class DetailsScreen extends StatelessWidget {
   final String? pokemonId;

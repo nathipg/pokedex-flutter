@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../helpers/type_color.dart';
-import '../models/pokemon_model.dart';
+import '../../../helpers/type_color.dart';
+import '../../../models/pokemon_model.dart';
 import 'pokemon_card_content.dart';
-import 'pokemon_logo.dart';
-import 'rounded_card.dart';
+import '../pokemon_logo.dart';
+import '../../layout/rounded_card.dart';
 
 class PokemonCard extends StatelessWidget {
   final PokemonModel pokemon;

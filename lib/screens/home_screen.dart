@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 
 import '../models/app_model.dart';
 import '../services/pokemon_service.dart';
-import '../widgets/loading.dart';
-import '../widgets/page_title.dart';
-import '../widgets/pokemon_card_list.dart';
-import '../widgets/pokemon_logo.dart';
+import '../widgets/layout/loading.dart';
+import '../widgets/layout/page_title.dart';
+import '../widgets/pokemon/pokemon_card/pokemon_card_list.dart';
+import '../widgets/pokemon/pokemon_logo.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

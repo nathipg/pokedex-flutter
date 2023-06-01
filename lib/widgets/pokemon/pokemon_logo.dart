@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'positioner.dart';
+import '../layout/positioner.dart';
 
 class PokemonLogo extends StatelessWidget {
   final Color color;

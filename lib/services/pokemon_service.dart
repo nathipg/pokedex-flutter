@@ -75,7 +75,7 @@ class PokemonService {
   Future<List<PokemonModel>> getPokemonList() async {
     try {
       var url = Uri.parse(
-          '${ApiConstants.baseUrl}${ApiConstants.pokemonEndpoint}?limit=151');
+          '${ApiConstants.baseUrl}${ApiConstants.pokemonEndpoint}?limit=1');
       var response = await http.get(url);
 
       if (response.statusCode == 200) {

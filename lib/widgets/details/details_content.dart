@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/pokemon_model.dart';
-import 'rounded_card.dart';
+import '../../models/pokemon_model.dart';
+import '../layout/rounded_card.dart';
 
 List<String> tabsName = [
   'About',
