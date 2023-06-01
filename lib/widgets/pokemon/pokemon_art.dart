@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../layout/positioner.dart';
+import '../positioner.dart';
 
 class PokemonArt extends StatelessWidget {
   final String imgUrl;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/pokemon_model.dart';
-import '../layout/page_title.dart';
+import '../page_title.dart';
 import '../pokemon/pokemon_type_card.dart';
 
 class DetailsHeader extends StatelessWidget {

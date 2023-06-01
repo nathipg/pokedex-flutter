@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../models/pokemon_model.dart';
-import '../layout/rounded_card.dart';
+import '../rounded_card.dart';
+import 'tab/about.dart';
 
 List<String> tabsName = [
   'About',
@@ -46,15 +47,17 @@ class DetailsContent extends StatelessWidget {
                   isScrollable: true,
                   tabs: tabs,
                 ),
-                const Expanded(
+                Expanded(
                   child: Padding(
                     padding: EdgeInsets.all(16),
                     child: TabBarView(
                       children: [
-                        Text('TAB 1'),
-                        Text('TAB 2'),
-                        Text('TAB 3'),
-                        Text('TAB 4'),
+                        DetailsTabAbout(
+                          pokemon: pokemon,
+                        ),
+                        const Text('TAB 2'),
+                        const Text('TAB 3'),
+                        const Text('TAB 4'),
                       ],
                     ),
                   ),

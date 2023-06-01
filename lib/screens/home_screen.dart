@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../models/app_model.dart';
 import '../services/pokemon_service.dart';
-import '../widgets/layout/loading.dart';
-import '../widgets/layout/page_title.dart';
+import '../widgets/loading.dart';
+import '../widgets/page_title.dart';
 import '../widgets/pokemon/card/pokemon_card_list.dart';
 import '../widgets/pokemon/pokemon_logo.dart';
 
