@@ -12,7 +12,7 @@ class PokemonModel {
   int baseExperience;
   List<SpeciesDataModel> forms;
   List<GameIndexModel> gameIndices;
-  int height;
+  String height;
   List<dynamic> heldItems;
   int id;
   bool isDefault;
@@ -25,7 +25,7 @@ class PokemonModel {
   SpritesModel sprites;
   List<StatModel> stats;
   List<TypeModel> types;
-  int weight;
+  String weight;
   EvolutionChainModel? evolutionChain;
 
   PokemonModel(
@@ -57,7 +57,7 @@ class PokemonModel {
             json["forms"].map((x) => SpeciesDataModel.fromJson(x))),
         gameIndices: List<GameIndexModel>.from(
             json["game_indices"].map((x) => GameIndexModel.fromJson(x))),
-        height: json["height"],
+        height: '${(json["height"] / 10).toString()} cm',
         heldItems: List<dynamic>.from(json["held_items"].map((x) => x)),
         id: json["id"],
         isDefault: json["is_default"],
@@ -73,7 +73,7 @@ class PokemonModel {
             json["stats"].map((x) => StatModel.fromJson(x))),
         types: List<TypeModel>.from(
             json["types"].map((x) => TypeModel.fromJson(x))),
-        weight: json["weight"],
+        weight: '${(json["weight"] / 10).toString()} Kg',
       );
 
   Map<String, dynamic> toJson() => {
